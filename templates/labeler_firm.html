@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Video Comment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        @media screen and (max-width: 1000px) {
+            .container{
+                margin-top: 30px;
+                background-color: aquamarine;
+                font-size: 40px;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+            .form-check{
+                margin-top: 10px;
+            }
+            .form-check-input{width: 40px; height: 40px;}
+            .form-check-label{margin-left: 40px;}
+            .btn{ width: 200px; height: 80px;}
+        }
+        @media screen and (min-width: 1000px) {
+            .container{
+                margin-top: 30px;
+                background-color: aquamarine;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+            .form-check{
+                margin-top: 10px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <a href="logout">Logout</a><br><br>
+        <span><strong>Video: </strong><span id="video_title">{{video_title}}</span></span><br><br>
+        <div class="large-font"><p><strong>Comment: </strong>{{comment_text}}</p></div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Category:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="thanks" id="thanks" name="thanks">
+                    <label class="form-check-label" for="thanks">
+                        Thanks
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="greetings" id="greetings" name="greetings">
+                    <label class="form-check-label" for="greetings">
+                        Greetings
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="timestamp" id="timestamp" name="timestamp">
+                    <label class="form-check-label" for="timestamp">
+                        Timestamp
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="question" id="question" name="question">
+                    <label class="form-check-label" for="question">
+                        Question
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="doubt" id="doubt" name="doubt">
+                    <label class="form-check-label" for="doubt">
+                        Doubt
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="suggestion" id="suggestion" name="suggestion">
+                    <label class="form-check-label" for="suggestion">
+                        Suggestion
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="future_question" id="future_question" name="future_question">
+                    <label class="form-check-label" for="future_question">
+                        Future Question
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="disagree" id="disagree" name="disagree">
+                    <label class="form-check-label" for="disagree">
+                        Disagree
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="other" id="other" name="other">
+                    <label class="form-check-label" for="other">
+                        Other
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="non-english" id="non-english" name="non-english">
+                    <label class="form-check-label" for="non-english">
+                        non-english
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" id="comment_id" name="comment_id" value={{comment_id}}>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div><span>Available Comments = {{available_comments}}</span></div><br>
+        <div><span>Labelled Comments = {{labelled_comments}}</span></div>
+    </div>
+</body>
