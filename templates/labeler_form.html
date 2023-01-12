@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Video Comment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        @media screen and (max-width: 1000px) {
+            .container{
+                margin-top: 30px;
+                background-color: aquamarine;
+                font-size: 40px;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+            .form-check{
+                margin-top: 10px;
+            }
+            .form-check-input{width: 40px; height: 40px;}
+            .form-check-label{margin-left: 40px;}
+            .btn{ width: 200px; height: 80px;}
+        }
+        @media screen and (min-width: 1000px) {
+            .container{
+                margin-top: 30px;
+                background-color: aquamarine;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+            .form-check{
+                margin-top: 10px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <a href="logout">Logout</a><br><br>
+        <span><strong>Video: </strong><span id="video_title">{{video_title}}</span></span><br><br>
+        <div class="large-font"><p><strong>Comment: </strong>{{comment_text}}</p></div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Category:</label>
+                {% for label in labels %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value={{label.label_text}} id={{label.label_text}} name={{label.label_text}}>
+                    <label class="form-check-label" for={{label.label_text}}>
+                        {{label.display_text}}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            <label for="new_label" class="form-label">Add a new label</label>
+            <input id="new_label" name="new_label" class="form-control mb-3" type="text">
+            <input type="hidden" id="comment_id" name="comment_id" value={{comment_id}}>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div><span>Available Comments = {{available_comments}}</span></div><br>
+        <div><span>Labelled Comments = {{labelled_comments}}</span></div>
+    </div>
+</body>
